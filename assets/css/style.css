@@ -25,7 +25,7 @@ main{
 .jumbotron {
     background-color: #374785;
     text-align: center;
-    background-image:url("mountains.jpg");
+    background-image:url("../img/mountains.jpg");
     background-position: center;
     background-size: cover;
     color: white;
