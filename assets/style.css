@@ -8,39 +8,50 @@ font-family: 'Raleway', sans-serif; */
 * {
     margin: auto;
     padding: 10px;
-
 }
-
+body {
+    background: rgb(2,0,36);
+    background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(36,48,94,1) 35%, rgba(168,208,230,1) 100%);
+}
 main{
     border: 2px solid #24305E;
     padding-top: 29px;
- 
+    background-color: #eee;
+    font-family: 'Raleway', sans-serif;
 }
-
 .my-4 {
     padding: 0;
 }
-
 .jumbotron {
-    background-color: #A8D0E6;
+    background-color: #374785;
     text-align: center;
+    background-image:url("mountains.jpg");
+    background-position: center;
+    background-size: cover;
+    color: white;
 }
-
 .jumbotron p {
     font-size: 25px;
     font-family: 'Raleway', sans-serif;
-
+    font-weight: bold;
 }
-
 .header {
     font-family: 'Playfair Display', serif;
     font-weight: 800;
     font-size: 80px;
-   
-
 }
-
 .carousel {
     max-width: 900px;
-
+}
+.form-switch {
+    text-align: center;
+}
+.btn {
+    width: 15%;
+    margin: 0px auto;
+    background-color: #F76C6C;
+    color: white;
+}
+.flexSwitchCheckChecked {
+    background-color: #F76C6C;
 }
