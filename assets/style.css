@@ -3,7 +3,7 @@ font-family: font-family: 'Crimson Text', serif;
 font-family: 'Playfair Display', serif;
 font-family: 'Raleway', sans-serif;
 font-family: 'Raleway', sans-serif; */
-/* #F8E9A1, #F76C6C, #A8D0E6, #374785 (Dark Purple), #24305E (Dark blue) */
+/* #F8E9A1, #F76C6C, #A8D0E6 light blue, #374785 (Dark Purple), #24305E (Dark blue) */
 
 * {
     margin: auto;
@@ -42,6 +42,21 @@ main{
 }
 .carousel {
     max-width: 900px;
+<<<<<<< HEAD
+}
+.form-switch {
+    text-align: center;
+}
+.btn {
+    width: 15%;
+    margin: 0px auto;
+    background-color: #F76C6C;
+    color: white;
+}
+.flexSwitchCheckChecked {
+    background-color: #F76C6C;
+=======
+>>>>>>> 547c9dfadcf9619dcd9247f105489bd1b2206290
 }
 .form-switch {
     text-align: center;
