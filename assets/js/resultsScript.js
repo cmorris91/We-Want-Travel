@@ -112,13 +112,7 @@ function getHotels(location) {
         .catch(function(err) {
             console.error(err);
         });
-<<<<<<< HEAD
        
     };
-=======
-      
-        
-};
->>>>>>> b56827fc785247494a693a313c9d772b717fe17e
 
 getHotels(searchTerm);
