@@ -87,7 +87,7 @@ function getHotels(location) {
                 myDiv.addClass('col-12 col-lg-4')
 
                 myDiv.append(hotelName);
-                // myDiv.append(price);
+                myDiv.append(price);
                 myDiv.append(rating);
                 myDiv.append(area);
 
