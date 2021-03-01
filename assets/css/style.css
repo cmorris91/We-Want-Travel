@@ -67,3 +67,8 @@ main{
 .flexSwitchCheckChecked {
     background-color: #F76C6C;
 }
+
+.hotel-results p {
+    font-size: 18px;
+    font-weight: bold;
+}
