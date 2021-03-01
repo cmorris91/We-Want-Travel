@@ -1,4 +1,5 @@
 var resultsEl = $("#results");
+var tempresults = $("#temp-results")
 var searchTerm = localStorage.getItem("searchValue") || ""
 
 function getWeather(input) {
@@ -22,8 +23,10 @@ function getWeather(input) {
             // temp.textContent = data.list[0].main.temp;
             // document.main.appendChild(temp)
             // create a for loop to populate the 5 day forecast. cycle 0-5 under list array
+            // 0,8,16,24,32
             console.log(temp);
             resultsEl.append(imgEl)
+            tempresults.append(temp)
         }
         console.log(data);
     })    
