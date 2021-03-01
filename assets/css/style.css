@@ -72,3 +72,9 @@ main{
     font-size: 18px;
     font-weight: bold;
 }
+
+.results-page {
+    border-radius: 10px;
+    background-color: #A8D0E6;
+    border: 0;
+}

@@ -1,5 +1,6 @@
 var resultsEl = $("#results");
 var weatherResults = $("#weather-results")
+var restaurantResults = $('#restaurants-results');
 var searchTerm = localStorage.getItem("searchValue") || ""
 var lat;
 var lng;
@@ -63,13 +64,14 @@ function getHotels(location) {
                 }
             })
             .then(response => {
+                console.log(response)
                 return response.json();
             })
             .then(data1 => {
                 // console.log(data1);
                 var myData1 = data1.data.body.searchResults.results;
                 for(var i = 0; i < 5; i++) {
-                    console.log(myData1[i]);
+                    // console.log(myData1[i]);
                 var myDiv = $('<div>');
                 var hotelName = $('<h3>');
                 var price = $('<p>');
@@ -108,8 +110,36 @@ function getHotels(location) {
                 'Authorization': 'Bearer tkaqOrtgCHbSkTsdf-0m6BjpsTgaj3ecaSVTqvSwCRBG5IPp3zw4M4EyKxegC8FZ3Ft_YEmYKtcXRIO355J5-ENa-_soqS1fwtLmKRYO3ZFyt6PWcxJ7Ib1eRTk9YHYx'
               },
             }).then(function (response) {
-            //   console.log(response);
-                console.log(response.businesses[0].name)
+              console.log(response)
+                var myData2 = response.businesses;
+
+                for(var i= 0; i < 5; i++) {
+                    console.log(myData2[i].name);
+                    var div2 = $('<div>');
+                    var div3 =$('<div>');
+                    var restName = $('<h3>');
+                    var restRating = $('<p>');
+                    var restImgUrl = $('<img>');
+                    var restUrl =$('<a>');
+
+                    restName.text(myData2[i].name);
+                    restRating.text("Rating: " + myData2[i].rating);
+                    restImgUrl.attr('src', myData2[i].image_url).css('width', '200px');
+                    restUrl.attr('href', myData2[i].url);
+                    restUrl.addClass('link')
+                    div2.addClass('col-2').css('flex',1);
+                    console.log(restUrl);
+                    
+                    div3.css('width', '200px').css('height', '200px').css('overflow', 'hidden').css('align-items', 'flex-end');
+                    div3.append(restImgUrl);
+                    restUrl.append(div3);
+                    div2.append(restName.css('align-items', 'flex-end'));
+                    div2.append(restRating.css('align-items', 'flex-end'))
+                    div2.append(restUrl);
+                    restaurantResults.append(div2);
+                    console.log(restaurantResults)
+                    
+                }
 
             })
             }).then(function (response) {
