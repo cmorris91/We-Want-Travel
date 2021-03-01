@@ -24,13 +24,71 @@ function getWeather(input) {
             // document.main.appendChild(temp)
             // create a for loop to populate the 5 day forecast. cycle 0-5 under list array
             // 0,8,16,24,32
-            console.log(temp);
+            // console.log(temp);
             resultsEl.append(imgEl)
             tempresults.append(temp)
         }
-        console.log(data);
+        // console.log(data);
     })    
     };
 
     getWeather(searchTerm)
-    console.log(searchTerm)
+    // console.log(searchTerm)
+
+var hotelResults = $('.hotel-results');
+
+function getHotels(location) {
+        fetch("http://www.mapquestapi.com/geocoding/v1/address?key=JgWvLdgBrNVGSTkR4kIyGDAmLg2LVUkK&location=" + location)
+        .then(function(response) {
+            return response.json()
+        })
+        .then(function(data) {
+            var lat = data.results[0].locations[0].latLng.lat.toString();
+            var lng = data.results[0].locations[0].latLng.lng.toString();
+            fetch("https://hotels-com-free.p.rapidapi.com/srle/listing/v1/brands/hotels.com?lat=" + lat + "&lon=" + lng + "&locale=en_US&currency=USD&pageNumber=1", {
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-key": "307037ba87msh679b27d5898dc92p15467bjsnd808822351aa",
+                    "x-rapidapi-host": "hotels-com-free.p.rapidapi.com"
+                }
+            })
+            .then(response => {
+                // console.log(response);
+                return response.json();
+            })
+            .then(data1 => {
+                console.log(data1);
+                var myData1 = data1.data.body.searchResults.results
+                // console.log(myData1)
+                for(var i = 0; i < 5; i++); {
+                    console.log(myData1[i]);
+                var myDiv = $('<div>');
+                var hotelName = $('<h3>');
+                var price = $('<p>');
+                var rating = $('<p>');
+                var area =  $('<p>');
+
+                hotelName.text(myData1[i].name);
+                price.text("Price: " + myData1[i].ratePlan.price.current);
+                rating.text("Overall Rating: " + myData1[i].guestReviews.rating);
+                area.text("Location: " + myData1[i].neighbourhood)
+    
+                myDiv.append(hotelName);
+                myDiv.append(price);
+                myDiv.append(rating);
+                myDiv.append(area);
+
+                hotelResults.append(myDiv);
+            }
+
+            }) 
+            .catch(err => {
+                console.error(err);
+            });
+        })
+        .catch(function(err) {
+            console.error(err);
+        });
+    };
+
+    getHotels(searchTerm);
