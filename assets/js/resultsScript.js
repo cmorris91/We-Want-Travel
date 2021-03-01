@@ -73,13 +73,13 @@ function getHotels(location) {
                 var price = $('<p>');
                 var rating = $('<p>');
                 var area =  $('<p>');
-
+                
                 hotelName.text(myData1[i].name);
                 price.text("Price: " + myData1[i].ratePlan.price.current);
                 rating.text("Overall Rating: " + myData1[i].starRating);
                 area.text("Location: " + myData1[i].neighbourhood);
                 myDiv.addClass('col-12 col-lg-4')
-                
+
     
                 myDiv.append(hotelName);
                 myDiv.append(price);
