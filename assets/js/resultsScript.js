@@ -77,7 +77,11 @@ function getHotels(location) {
                 var area =  $('<p>');
                 
                 hotelName.text(myData1[i].name);
-                // price.text("Price: " + myData1[i].ratePlan.price.current);
+                if (myData1[i].ratePlan){
+                    price.text("Price: " + myData1[i].ratePlan.price.current);
+                } else {
+                    price.text("Price: Not available");
+                }
                 rating.text("Overall Rating: " + myData1[i].starRating);
                 area.text("Location: " + myData1[i].neighbourhood);
                 myDiv.addClass('col-12 col-lg-4')
@@ -104,7 +108,9 @@ function getHotels(location) {
                 'Authorization': 'Bearer tkaqOrtgCHbSkTsdf-0m6BjpsTgaj3ecaSVTqvSwCRBG5IPp3zw4M4EyKxegC8FZ3Ft_YEmYKtcXRIO355J5-ENa-_soqS1fwtLmKRYO3ZFyt6PWcxJ7Ib1eRTk9YHYx'
               },
             }).then(function (response) {
-              console.log(response);
+            //   console.log(response);
+                console.log(response.businesses[0].name)
+
             })
             }).then(function (response) {
               console.log(response);
@@ -112,7 +118,9 @@ function getHotels(location) {
         .catch(function(err) {
             console.error(err);
         });
-       
-    };
+      
+        
+};
+// image_url, url , name , rating 
 
 getHotels(searchTerm);
