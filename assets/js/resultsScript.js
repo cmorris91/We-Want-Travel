@@ -1,6 +1,8 @@
 var resultsEl = $("#results");
 var weatherResults = $("#weather-results")
 var searchTerm = localStorage.getItem("searchValue") || ""
+var lat;
+var lng;
 
 function getWeather(input) {
     var baseWURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + input + "&units=imperial&APPID=2ac1259b720a1255fc6e48f2d466be01"; 
@@ -51,12 +53,12 @@ function getHotels(location) {
             return response.json()
         })
         .then(function(data) {
-            var lat = data.results[0].locations[0].latLng.lat.toString();
-            var lng = data.results[0].locations[0].latLng.lng.toString();
+           lat = data.results[0].locations[0].latLng.lat.toString();
+           lng = data.results[0].locations[0].latLng.lng.toString();
             fetch("https://hotels-com-free.p.rapidapi.com/srle/listing/v1/brands/hotels.com?lat=" + lat + "&lon=" + lng + "&locale=en_US&currency=USD&pageNumber=1&per_page=5", {
                 "method": "GET",
                 "headers": {
-                    "x-rapidapi-key": "a1d63ec0f8msh6f2ae02247681a1p1c8a9djsna249c725882e",
+                    "x-rapidapi-key": "2b418f7148msh278a7009415eacfp123f9fjsn4db366fdcc44",
                     "x-rapidapi-host": "hotels-com-free.p.rapidapi.com"
                 }
             })
@@ -93,10 +95,27 @@ function getHotels(location) {
             .catch(err => {
                 console.error(err);
             });
+            let queryYelp = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=' + lat + '&longitude=' + lng
+            console.log(queryYelp)
+            $.ajax({
+              'url': queryYelp,
+              'method': 'GET',
+              'timeout': 0,
+              'headers': {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer tkaqOrtgCHbSkTsdf-0m6BjpsTgaj3ecaSVTqvSwCRBG5IPp3zw4M4EyKxegC8FZ3Ft_YEmYKtcXRIO355J5-ENa-_soqS1fwtLmKRYO3ZFyt6PWcxJ7Ib1eRTk9YHYx'
+              },
+            }).then(function (response) {
+              console.log(response);
+            })
+            }).then(function (response) {
+              console.log(response);
         })
         .catch(function(err) {
             console.error(err);
         });
-    };
+      
+        
+};
 
-    getHotels(searchTerm);
+getHotels(searchTerm);
