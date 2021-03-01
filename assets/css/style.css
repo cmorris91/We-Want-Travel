@@ -25,7 +25,7 @@ main{
 .jumbotron {
     background-color: #374785;
     text-align: center;
-    background-image:url("mountains.jpg");
+    background-image:url("../img/mountains.jpg");
     background-position: center;
     background-size: cover;
     color: white;
@@ -42,7 +42,6 @@ main{
 }
 .carousel {
     max-width: 900px;
-<<<<<<< HEAD
 }
 .form-switch {
     text-align: center;
@@ -55,8 +54,6 @@ main{
 }
 .flexSwitchCheckChecked {
     background-color: #F76C6C;
-=======
->>>>>>> 547c9dfadcf9619dcd9247f105489bd1b2206290
 }
 .form-switch {
     text-align: center;
