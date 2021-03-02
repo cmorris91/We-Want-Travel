@@ -1,5 +1,6 @@
 var resultsEl = $("#results");
 var weatherResults = $("#weather-results")
+var restaurantResults = $('#restaurants-results');
 var searchTerm = localStorage.getItem("searchValue") || ""
 var lat;
 var lng;
@@ -21,13 +22,13 @@ function getWeather(input) {
             var skyEl = $('<p>');
             var tempEl = $('<p>');
             
-            skyEl.text("Sky Conditions: " + data.list[i].weather[0].description);
-            tempEl.text("Temp: " + data.list[i].main.temp);
+            skyEl.text("Sky Conditions:").html(skyEl.html() + "<br/>" +  data.list[i].weather[0].description ).css('padding', 0);
+            tempEl.text("Temp: " + data.list[i].main.temp).css('padding', 0);
             weatherDate.text(data.list[i].dt_txt.substring(0,10))
-            imgEl.attr("src", iconURL);
+            imgEl.attr("src", iconURL).css('padding', 0);
             imgEl.attr("alt", "weather-icon");
             myDiv.addClass('col-12 col-md-2')
-            myDiv.css('background-color', '#eae0e0').css('margin', '2px').css('border-radius', '5px')
+            myDiv.css('background-color', '#eae0e0').css('margin', '2px').css('border-radius', '5px').css('text-align', 'center');
 
             myDiv.append(weatherDate);
             myDiv.append(imgEl);
@@ -63,13 +64,14 @@ function getHotels(location) {
                 }
             })
             .then(response => {
+                console.log(response)
                 return response.json();
             })
             .then(data1 => {
-                console.log(data1);
+                // console.log(data1);
                 var myData1 = data1.data.body.searchResults.results;
                 for(var i = 0; i < 5; i++) {
-                    console.log(myData1[i]);
+                    // console.log(myData1[i]);
                 var myDiv = $('<div>');
                 var hotelName = $('<h3>');
                 var price = $('<p>');
@@ -84,21 +86,19 @@ function getHotels(location) {
                 }
                 rating.text("Overall Rating: " + myData1[i].starRating);
                 area.text("Location: " + myData1[i].neighbourhood);
-                myDiv.addClass('col-12 col-lg-4')
+                myDiv.addClass('col-12 col-lg-4').css('text-align', 'center');
 
-    
                 myDiv.append(hotelName);
                 myDiv.append(price);
                 myDiv.append(rating);
                 myDiv.append(area);
 
                 hotelResults.append(myDiv);
-            };
 
-            }) 
-            // .catch(err => {
-            //     console.error(err);
-            // });
+            }})
+            .catch(err => {
+                console.error(err);
+            });
             let queryYelp = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=' + lat + '&longitude=' + lng
             console.log(queryYelp)
             $.ajax({
@@ -110,8 +110,39 @@ function getHotels(location) {
                 'Authorization': 'Bearer tkaqOrtgCHbSkTsdf-0m6BjpsTgaj3ecaSVTqvSwCRBG5IPp3zw4M4EyKxegC8FZ3Ft_YEmYKtcXRIO355J5-ENa-_soqS1fwtLmKRYO3ZFyt6PWcxJ7Ib1eRTk9YHYx'
               },
             }).then(function (response) {
-            //   console.log(response);
-                console.log(response.businesses[0].name)
+              console.log(response)
+                var myData2 = response.businesses;
+
+                for(var i= 0; i < 5; i++) {
+                    console.log(myData2[i].name);
+                    var div2 = $('<div>');
+                    var div3 =$('<div>');
+                    var restName = $('<h3>');
+                    var restRating = $('<p>');
+                    var restImgUrl = $('<img>');
+                    var restUrl =$('<a>');
+                    var type =$('<p>');
+
+                    type.text(myData2[i].categories[0].title);
+                    restName.text(myData2[i].name);
+                    restRating.text("Rating: " + myData2[i].rating);
+                    restImgUrl.attr('src', myData2[i].image_url).css('width', '200px').css('padding',0);
+                    restUrl.attr('href', myData2[i].url);
+                    restUrl.addClass('link')
+                    div2.addClass('col-2').css('flex',1).css('text-align', 'center');
+                    console.log(restUrl);
+                    
+                    div3.css('width', '200px').css('height', '200px').css('overflow', 'hidden').css('align-items', 'flex-end');
+                    div3.append(restImgUrl);
+                    restUrl.append(div3);
+                    div2.append(restName.css('align-items', 'flex-end').css('padding',0));
+                    div2.append(type.css('align-items', 'flex-end').css('padding',0));
+                    div2.append(restRating.css('align-items', 'flex-end').css('padding',0))
+                    div2.append(restUrl);
+                    restaurantResults.append(div2);
+                    console.log(restaurantResults)
+                    
+                }
 
             })
             }).then(function (response) {
