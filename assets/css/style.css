@@ -15,7 +15,6 @@ body {
 }
 main{
     border-radius: 5px;
-    /* border: 1px solid #24305E; */
     padding-top: 20px;
     background-color: #eee;
     font-family: 'Raleway', sans-serif;
@@ -55,6 +54,12 @@ main{
     background-color: #F76C6C;
     color: white;
 }
+.btn:hover {
+    background-color: #A8D0E6;
+    box-shadow: inset 2px 2px 2px 2px rgb(116, 113, 113);
+}
+
+
 .flexSwitchCheckChecked {
     background-color: #F76C6C;
 }
@@ -72,6 +77,14 @@ main{
     font-size: 18px;
     font-weight: bold;
 }
+#restaurants-results {
+    font-size: 18px;
+    font-weight: bold;
+}
+.showcityname {
+    text-align: center;
+    color: #ece7e7;
+}
 
 .results-page {
     border-radius: 10px;
@@ -79,3 +92,8 @@ main{
     background: radial-gradient(circle, rgba(237,173,150,0.8174457282913166) 4%, rgba(238,157,129,0.3104429271708683) 100%, rgba(235,234,230,0.47290791316526615) 100%);
     border: 0;
 }
+@media screen and (max-width: 600px) {
+   #search-button {
+     min-width: 25%;
+    }
+  }

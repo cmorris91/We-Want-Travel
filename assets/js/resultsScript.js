@@ -1,12 +1,14 @@
 var resultsEl = $("#results");
+var resultsPage = $('.results-page')
 var weatherResults = $("#weather-results")
 var restaurantResults = $('#restaurants-results');
+var showCityName =$('.showcityname')
 var searchTerm = localStorage.getItem("searchValue") || ""
 var lat;
 var lng;
 
 function getWeather(input) {
-    var baseWURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + input + "&units=imperial&APPID=2ac1259b720a1255fc6e48f2d466be01"; 
+    var baseWURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + input + "&units=imperial&APPID=2ac1259b720a1255fc6e48f2d466be01"; 
     fetch(baseWURL)
     .then(function(response) {
         return response.json()
@@ -47,9 +49,11 @@ function getWeather(input) {
     // console.log(searchTerm)
 
 var hotelResults = $('.hotel-results');
+var hotelImages = ['assets/img/generic hotel.jpg','assets/img/generic hotel 2.jpg','assets/img/generic hotel 3.jpg','assets/img/generic hotel 4.jpg'];
 
 function getHotels(location) {
-        fetch("http://www.mapquestapi.com/geocoding/v1/address?key=JgWvLdgBrNVGSTkR4kIyGDAmLg2LVUkK&location=" + location)
+    showCityName.text("Welcome To " + searchTerm.toUpperCase());
+        fetch("https://www.mapquestapi.com/geocoding/v1/address?key=JgWvLdgBrNVGSTkR4kIyGDAmLg2LVUkK&location=" + location)
         .then(function(response) {
             return response.json()
         })
@@ -59,7 +63,7 @@ function getHotels(location) {
             fetch("https://hotels-com-free.p.rapidapi.com/srle/listing/v1/brands/hotels.com?lat=" + lat + "&lon=" + lng + "&locale=en_US&currency=USD&pageNumber=1&per_page=5", {
                 "method": "GET",
                 "headers": {
-                    "x-rapidapi-key": "2b418f7148msh278a7009415eacfp123f9fjsn4db366fdcc44",
+                    "x-rapidapi-key": "a1d63ec0f8msh6f2ae02247681a1p1c8a9djsna249c725882e",
                     "x-rapidapi-host": "hotels-com-free.p.rapidapi.com"
                 }
             })
@@ -70,7 +74,7 @@ function getHotels(location) {
             .then(data1 => {
                 // console.log(data1);
                 var myData1 = data1.data.body.searchResults.results;
-                for(var i = 0; i < 5; i++) {
+                for(var i = 0; i < 4; i++) {
                     // console.log(myData1[i]);
                 var myDiv = $('<div>');
                 var hotelName = $('<h3>');
@@ -86,16 +90,31 @@ function getHotels(location) {
                 }
                 rating.text("Overall Rating: " + myData1[i].starRating);
                 area.text("Location: " + myData1[i].neighbourhood);
-                myDiv.addClass('col-12 col-lg-4').css('text-align', 'center');
+                myDiv.addClass('col-12 col-lg-3').css('text-align', 'center');
 
-                myDiv.append(hotelName);
-                myDiv.append(price);
-                myDiv.append(rating);
-                myDiv.append(area);
+                myDiv.append(hotelName.css('padding',0));
+                myDiv.append(price.css('padding',0));
+                myDiv.append(rating.css('padding',0));
+                myDiv.append(area.css('padding',0));
+                var imgDiv = $('<div>');
+                var hotelImgEl= $('<img>');
+
+                imgDiv.css('width', '200px').css('height', '200px').css('overflow', 'hidden').css('align-items', 'flex-end')
+                hotelImgEl.attr('src', hotelImages[i]).css('width', '200px').css('padding',0);
+                imgDiv.append(hotelImgEl)
+                myDiv.append(imgDiv);
 
                 hotelResults.append(myDiv);
+                
+       
+    
 
-            }})
+                
+                
+            }
+        
+        })
+
             .catch(err => {
                 console.error(err);
             });
@@ -157,3 +176,7 @@ function getHotels(location) {
 // image_url, url , name , rating 
 
 getHotels(searchTerm);
+
+
+// a1d63ec0f8msh6f2ae02247681a1p1c8a9djsna249c725882e chelsey
+// 2b418f7148msh278a7009415eacfp123f9fjsn4db366fdcc44 sharon
