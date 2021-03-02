@@ -164,8 +164,7 @@ function getHotels(location) {
                 }
 
             })
-            }).then(function (response) {
-              console.log(response);
+            
         })
         .catch(function(err) {
             console.error(err);
