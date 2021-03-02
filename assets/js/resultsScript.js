@@ -17,7 +17,7 @@ function getWeather(input) {
         for(var i = 0; i < data.list.length; i += 8) {
            
             var weatherIcon = data.list[i].weather[0].icon;
-            var iconURL = "http://openweathermap.org/img/wn/" + weatherIcon + ".png"
+            var iconURL = "https://openweathermap.org/img/wn/" + weatherIcon + ".png"
             var myDiv = $('<div>')
             var weatherDate = $('<p>')
             var imgEl = $("<img>");
