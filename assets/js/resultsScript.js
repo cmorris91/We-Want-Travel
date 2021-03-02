@@ -22,13 +22,13 @@ function getWeather(input) {
             var skyEl = $('<p>');
             var tempEl = $('<p>');
             
-            skyEl.text("Sky Conditions: " + data.list[i].weather[0].description);
-            tempEl.text("Temp: " + data.list[i].main.temp);
+            skyEl.text("Sky Conditions:").html(skyEl.html() + "<br/>" +  data.list[i].weather[0].description ).css('padding', 0);
+            tempEl.text("Temp: " + data.list[i].main.temp).css('padding', 0);
             weatherDate.text(data.list[i].dt_txt.substring(0,10))
-            imgEl.attr("src", iconURL);
+            imgEl.attr("src", iconURL).css('padding', 0);
             imgEl.attr("alt", "weather-icon");
             myDiv.addClass('col-12 col-md-2')
-            myDiv.css('background-color', '#eae0e0').css('margin', '2px').css('border-radius', '5px')
+            myDiv.css('background-color', '#eae0e0').css('margin', '2px').css('border-radius', '5px').css('text-align', 'center');
 
             myDiv.append(weatherDate);
             myDiv.append(imgEl);
@@ -86,7 +86,7 @@ function getHotels(location) {
                 }
                 rating.text("Overall Rating: " + myData1[i].starRating);
                 area.text("Location: " + myData1[i].neighbourhood);
-                myDiv.addClass('col-12 col-lg-4')
+                myDiv.addClass('col-12 col-lg-4').css('text-align', 'center');
 
                 myDiv.append(hotelName);
                 myDiv.append(price);
@@ -121,20 +121,23 @@ function getHotels(location) {
                     var restRating = $('<p>');
                     var restImgUrl = $('<img>');
                     var restUrl =$('<a>');
+                    var type =$('<p>');
 
+                    type.text(myData2[i].categories[0].title);
                     restName.text(myData2[i].name);
                     restRating.text("Rating: " + myData2[i].rating);
-                    restImgUrl.attr('src', myData2[i].image_url).css('width', '200px');
+                    restImgUrl.attr('src', myData2[i].image_url).css('width', '200px').css('padding',0);
                     restUrl.attr('href', myData2[i].url);
                     restUrl.addClass('link')
-                    div2.addClass('col-2').css('flex',1);
+                    div2.addClass('col-2').css('flex',1).css('text-align', 'center');
                     console.log(restUrl);
                     
                     div3.css('width', '200px').css('height', '200px').css('overflow', 'hidden').css('align-items', 'flex-end');
                     div3.append(restImgUrl);
                     restUrl.append(div3);
-                    div2.append(restName.css('align-items', 'flex-end'));
-                    div2.append(restRating.css('align-items', 'flex-end'))
+                    div2.append(restName.css('align-items', 'flex-end').css('padding',0));
+                    div2.append(type.css('align-items', 'flex-end').css('padding',0));
+                    div2.append(restRating.css('align-items', 'flex-end').css('padding',0))
                     div2.append(restUrl);
                     restaurantResults.append(div2);
                     console.log(restaurantResults)
