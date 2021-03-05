@@ -18,7 +18,7 @@ main{
     padding-top: 20px;
     background-color: #eee;
     font-family: 'Raleway', sans-serif;
-
+    
 }
 .my-4 {
     padding: 0;
@@ -59,16 +59,8 @@ main{
     box-shadow: inset 2px 2px 2px 2px rgb(116, 113, 113);
 }
 
-
 .flexSwitchCheckChecked {
     background-color: #F76C6C;
-}
-.form-switch {
-    text-align: center;
-}
-
-.form-control {
-    margin: 0 auto;
 }
 
 .btn {
@@ -90,7 +82,12 @@ main{
     text-align: center;
     color: #ece7e7;
 }
-
+.input-group {
+    margin-left: 7%;
+}
+.form-control {
+    max-width: 75%;
+}
 .results-page {
     border-radius: 10px;
     background: rgb(237,173,150);
@@ -101,4 +98,13 @@ main{
    #search-button {
      min-width: 25%;
     }
+  }
+  @media screen and (max-width: 720px) {
+   .form-control {
+        width: 30px;
+    }
+    .input-group {
+        margin-left: 1%;
+    }
+
   }
