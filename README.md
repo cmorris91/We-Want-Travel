@@ -30,7 +30,7 @@ https://cmorris91.github.io/group-project-1/
 Repo:
 https://github.com/cmorris91/group-project-1
 
-#Photos
+# Photos
 ![screenshot of photo](./assets/img/screenshot.jpg)
 
 
