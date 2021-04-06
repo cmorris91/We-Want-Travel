@@ -19,6 +19,7 @@ Chelsey Morris:
     linkedIn: https://www.linkedin.com/in/chelsey-morris-758590204/
 
 Sharon: 
+    email: martinezsharonr@gmail.com
     github: github.com/sharon1106
 
 Tim Morse:
@@ -30,8 +31,8 @@ https://cmorris91.github.io/group-project-1/
 Repo:
 https://github.com/cmorris91/group-project-1
 
-#Photos
+# Photos
 ![screenshot of photo](./assets/img/screenshot.jpg)
 
 
-![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)`
+![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
